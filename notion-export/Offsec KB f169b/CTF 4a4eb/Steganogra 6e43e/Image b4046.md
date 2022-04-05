@@ -2,7 +2,7 @@
 
 ## Python script to XOR image file
 
-```
+```python
 from PIL import Image
 from pwn import *
 

