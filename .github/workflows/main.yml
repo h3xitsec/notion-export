@@ -12,6 +12,6 @@ jobs:
       - uses: igor-kupczynski/notion-exporter@v1.0.2
         with:
           pages: "f169b9e1-fcd2-4362-9a7d-2bdb1ab292d8"  # Pages IDs identified in (step 2)  
-          output-dir: .
+          output-dir: notion-export
           notion-token: ${{ secrets.NOTION_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
