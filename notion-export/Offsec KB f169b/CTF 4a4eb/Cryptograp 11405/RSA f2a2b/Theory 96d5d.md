@@ -67,7 +67,7 @@ e = 7
 d = 223
 ```
 
-## recap
+## the key
 
 ```
 private_key = [d, n] = (223, 143)
