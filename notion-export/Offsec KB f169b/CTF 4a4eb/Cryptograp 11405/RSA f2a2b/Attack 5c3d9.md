@@ -1,5 +1,45 @@
 # Attack
 
+## calculate decryption key (d) given e,p,q
+
+```python
+from gmpy2 import *
+d = invert(e, (p-1) * (q-1))
+```
+
+## factorization with primefac module
+
+```python
+import primefac
+n = 0x8d9424ddbf9fff7636d98abc25af7fde87e719dc3ceee86ca441b079e167cc22ff283f1a8671263c2e5ebd383ca3255e903b37ebca9961fd8a657cb987ef1e709866acc457995bfc7a6d4be7e88b9ee03a9872329e05cb7eb849d61e4bb44a25be8bd42f19f13a9417bfab73ba616b7c05865640682dc685890bbce8c20c65175f322b5b27788fede4f6704c6cb7b2d2d9439fad50f8b79ffab0b790591ae7f43bd0316565b097b9361d3beb88b6ef569d05af75d655b5133dc59a24c86d147a5eb5311344a66791f03a3da797effd600aa61564ce4ffd81f70bfedf12ca7857b9ac781a4823f6c1a08f1e86f8fe0e1eb3eb6ac71b63e4b03ba841c8588f6df1
+
+q = primefac.pollard_pm1(n)
+p = n//q
+
+assert n == p*q
+```
+
+## factorization with custom Pollard’s p-1 function
+
+```python
+from gmpy2 import *
+def Pollards_p_1(N):
+    a = 2
+    n = 2
+    while True:
+        a = pow(a,n,N)
+        res = gcd(a-1,N)
+        if res != 1 and res != N:
+            print('n = {a}'.format(a=n))
+            print('p = {a}'.format(a=res))
+            return res
+        n += 1
+
+q = Pollards_p_1(n)
+p = n//q
+assert n == p*q
+```
+
 ## RSA Fermat Attack
 
 ```python
