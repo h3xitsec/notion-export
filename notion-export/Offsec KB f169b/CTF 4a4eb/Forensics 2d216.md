@@ -23,5 +23,4 @@ xxd -c1 -p test.png |
     END{ exit found }' |
   xxd -r -p > new_file
 test ${PIPESTATUS[1]} -eq 0 || rm new_file
-
 ```
