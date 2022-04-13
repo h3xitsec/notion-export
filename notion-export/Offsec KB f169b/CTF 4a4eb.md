@@ -7,3 +7,5 @@
 [Forensics](CTF%204a4eb/Forensics%202d216.md)
 
 [Cryptography](CTF%204a4eb/Cryptograp%2011405.md)
+
+[Hardware](CTF%204a4eb/Hardware%20f238f.md)
